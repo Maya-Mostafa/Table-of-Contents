@@ -1,0 +1,119 @@
+@import '~@fluentui/react/dist/sass/References.scss';
+
+.tableOfContents {
+
+  .activeLink{
+    background-color: #f2f2f2;
+    font-weight: 600;    
+  }
+
+  &.wpStylePlain{
+    display: block;
+  }
+  &.wpStyleBoxed{
+    padding: 5px 30px 5px 13px;
+    box-shadow: 0px 1px 5px 2px #ddd;
+    border-radius: 7px;
+  }
+  &.wpStyleTimeline{
+    display: block;
+  }
+
+  /* Collpase & expand styles */
+  .listInitCollapsed, .listInitExpanded{
+    ul{
+      padding-inline-start: 15px;
+    }
+    &.mainList{
+      padding-inline-start: 0px;
+    }
+    ul, li{
+      list-style-type: none;
+    }
+    .linkNoChild{
+      padding-left: 11px;
+    }
+    .linkHasChild{
+      display: inherit;
+    }
+    .colExpIcon{
+      padding-right: 2px;
+      i{
+        font-size: 9px;
+        font-weight: 600;
+      }
+    }
+    .collapseChild{
+      + .childList{
+        display: none;
+      }
+    }
+    .expandChild{
+      + .childList{
+        display: block;
+      }
+    }
+  }  
+  .listInitCollapsed{
+    .childList{
+      display: none;
+    }
+  }
+  .listInitExpanded{
+    .childList{
+      display: block;
+    }
+  }
+  
+
+  
+  
+
+
+  h2{
+    font-weight: 400!important;
+  }
+
+  a {
+    color: var(--actionLink);
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+
+    &:hover {
+      color: var(--actionLink);
+      text-decoration: underline;
+    }
+
+    &:visited {
+      color: var(--actionLink);
+    }
+  }
+
+  li::marker {
+    color: var(--primaryButtonBackground);
+  }
+
+  .backItem {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: var(--menuDivider);
+    margin-bottom: 10px
+  }
+
+  // hide on medium screens and smaller
+  .hideInMobileView {
+    @include ms-screen-lg-down {
+      display: none !important;
+    }
+  }
+
+  .title {
+    min-height: auto;
+  }
+
+  .hideTitle {
+    display: none !important;
+  }
+}

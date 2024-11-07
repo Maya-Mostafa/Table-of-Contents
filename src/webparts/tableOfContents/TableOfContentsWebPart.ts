@@ -10,7 +10,8 @@ import {
   PropertyPaneToggle,
   PropertyPaneTextField,
   PropertyPaneLabel,
-  PropertyPaneDropdown
+  PropertyPaneDropdown,
+  PropertyPaneLink
 } from "@microsoft/sp-property-pane";
 import {
   ThemeProvider,
@@ -21,6 +22,7 @@ import {
 import * as strings from 'TableOfContentsWebPartStrings';
 import TableOfContents from './components/TableOfContents';
 import { ITableOfContentsProps } from './components/ITableOfContentsProps';
+//import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls';
 
 export interface ITableOfContentsWebPartProps {
   hideTitle: boolean;
@@ -45,6 +47,7 @@ export interface ITableOfContentsWebPartProps {
   wpStyle: string;
   collapsibleState: string;
   verticalToRight: boolean;
+  addScrollToTop: boolean;
 }
 
 export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITableOfContentsWebPartProps> {
@@ -123,7 +126,8 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
         theme: this.properties.theme,
         wpStyle: this.properties.wpStyle,
         collapsibleState: this.properties.collapsibleState,
-        verticalToRight: this.properties.verticalToRight
+        verticalToRight: this.properties.verticalToRight,
+        addScrollToTop: this.properties.addScrollToTop,
       }
     );
 
@@ -271,7 +275,7 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   options: [
                     { key: 'wpStylePlain', text: 'Plain' },
                     { key: 'wpStyleBoxed', text: 'Boxed' },
-                    { key: 'wpStyleTimeline', text: 'Timeline' },                    
+                    // { key: 'wpStyleTimeline', text: 'Timeline' },                    
                   ],
                   selectedKey: "plain"
                 }),
@@ -283,6 +287,9 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                     { key: 'expandedState', text: 'Expanded' },                    
                   ],
                   selectedKey: "noneState"
+                }),
+                PropertyPaneCheckbox('addScrollToTop', {
+                  text: strings.addScrollToTop
                 }),
               ]
             },
@@ -296,6 +303,15 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                 }),
                 PropertyPaneToggle('hideInMobileView', {
                   label: strings.hideInMobileViewLabel
+                })
+              ]
+            },
+            {
+              groupFields: [                
+                PropertyPaneLink('linkProperty', {
+                  href: 'https://pdsb1.sharepoint.com/sites/PDSBbrand/SitePages/TOC.aspx',
+                  text: 'Need help? Click here to see how to use this.',
+                  target: '_blank'
                 })
               ]
             }

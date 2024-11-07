@@ -1,5 +1,31 @@
 @import '~@fluentui/react/dist/sass/References.scss';
 
+.scrollToTop{
+  background: #0082cb59;
+  bottom: 15px;
+  cursor: pointer;
+  position: fixed;
+  right: 30px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-out;
+  &:hover{
+    box-shadow: 0px 0px 3px 2px #aaa;
+    background: #0082cb;
+    transition: all 0.5s ease-out;
+  }
+  i{
+    font-weight: 600;
+    color: #fff;
+    font-size: 22px;
+  }
+}
+
 .tableOfContents {
 
   .activeLink{

@@ -282,7 +282,6 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     };
   }
 
-
   /**
    * Creates a list of components to display from a list of links.
    * @param links
@@ -319,6 +318,10 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     return elements;
   }
 
+  private handleScroll = () => {
+    console.log("scrolling!");
+  }
+
   /**
    * Force the component to re-render with a specified interval.
    * This is needed to get valid id values for headers to use in links. Right after the rendering headers won't have valid ids, they are assigned later once the whole page got rendered.
@@ -326,10 +329,21 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
    * Once valid ids got assigned to headers by SharePoint code, the component will get valid ids for headers. This way a link from ToC can be copied by a user and it will be a valid link to a header.
    */
   public componentDidMount() {
-    setInterval(() => {
-      this.setState({});
-    }, TableOfContents.timeout);
+    this.setState({});
+    console.log("componentDidMount");
+    document.querySelector('.commandBarWrapper').addEventListener('scroll', this.handleScroll);
+
+    // setInterval(() => {
+    //   this.setState({});
+    // }, TableOfContents.timeout);
+
   }
+
+  public componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  
 
   /**
    * Event for the back to previous page link. 
@@ -383,6 +397,7 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     }
   }
 
+
   public render(): JSX.Element {
     
     let collapsibleStyle = "";
@@ -412,8 +427,6 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     // set vertical column direction
     this.configureVerticalColumn();
 
-    
-
     // const webpartStyle = this.props.wpStyle ? this.props.wpStyle : 'wpStylePlain';
 
     return (
@@ -429,6 +442,11 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
             {previousPageBelow}
           </nav>
         </div>
+        {this.props.addScrollToTop && 
+          <div className={styles.scrollToTop}>
+            <a title="Scroll to Top" onClick={this.scrollToHeader(links[0].element, 0)}><Icon iconName='SortUp' /></a>
+          </div>
+        }
       </section>
     );
   }

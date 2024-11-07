@@ -28,6 +28,7 @@ declare interface ITableOfContentsWebPartStrings {
   collapsible: string;
   verticalToRight: string;
   collapsibleState: string;
+  addScrollToTop: string;
 }
 
 declare module 'TableOfContentsWebPartStrings' {

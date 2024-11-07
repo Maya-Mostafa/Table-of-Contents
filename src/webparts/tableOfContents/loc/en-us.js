@@ -28,6 +28,7 @@ define([], function() {
     "wpStyle": "Web part style",
     "collapsible": "Collapsible heading",
     "verticalToRight": "Move the vertical column to the left",
-    "collapsibleState": "Collapsible State"
+    "collapsibleState": "Collapsible State",
+    "addScrollToTop": "Add Scroll to Top"
   }
 });

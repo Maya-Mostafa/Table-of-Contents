@@ -32,4 +32,5 @@ export interface ITableOfContentsProps {
   wpStyle: string;
   collapsibleState: string;
   verticalToRight: boolean;
+  addScrollToTop: boolean;
 }

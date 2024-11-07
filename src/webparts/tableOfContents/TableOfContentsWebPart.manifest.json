@@ -42,7 +42,12 @@
       "showPreviousPageLinkBelow": false,    
       "hideInMobileView": true,
       "enableStickyMode": false,
-      "listStyle": "default"
+      "listStyle": "default",
+
+      "verticalToRight": false,
+      "wpStyle": "wpStylePlain",
+      "collapsibleState": "noneState",
+      "addScrollToTop": false
     }
   }]
 }

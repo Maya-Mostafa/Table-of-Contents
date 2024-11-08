@@ -29,6 +29,8 @@ define([], function() {
     "collapsible": "Collapsible heading",
     "verticalToRight": "Move the vertical column to the left",
     "collapsibleState": "Collapsible State",
-    "addScrollToTop": "Add Scroll to Top"
+    "addScrollToTop": "Add Scroll to Top",
+    "backgroundColor": "Background Color",
+    "activeLinkBackgroundColor": "Active Link Background Color"
   }
 });

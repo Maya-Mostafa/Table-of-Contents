@@ -8,4 +8,5 @@ export interface LinkElementProps{
     clickHandler: any;
     collapsibleState: string;
     index: number;
+    activeLinkColor: string;
 }

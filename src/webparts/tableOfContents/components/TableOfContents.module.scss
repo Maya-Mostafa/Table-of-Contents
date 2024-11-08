@@ -41,8 +41,36 @@
     box-shadow: 0px 1px 5px 2px #ddd;
     border-radius: 7px;
   }
-  &.wpStyleTimeline{
+  &.wpStyleLined{
     display: block;
+    padding: 5px 30px 5px 13px;
+    border-radius: 3px;
+    .mainList{
+      border-radius: 5px;
+      ul, li{
+        padding: 0!important;
+        margin: 0!important;
+        padding-inline-start: 0px!important;
+        font-weight: normal;
+      }
+      a{
+        border-bottom: 1px solid #fff;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        border-radius: 0;
+        padding: 7px 10px;
+      }
+      li li a{ //2nd level
+        padding-left: 20px;
+      }
+      li li li a{ //3rd level
+        padding-left: 30px;
+      }
+    }
+    .mainList > li{
+      font-weight: 600;
+    }
   }
 
   /* Collpase & expand styles */

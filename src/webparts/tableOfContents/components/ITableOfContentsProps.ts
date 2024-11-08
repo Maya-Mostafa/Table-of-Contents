@@ -33,4 +33,6 @@ export interface ITableOfContentsProps {
   collapsibleState: string;
   verticalToRight: boolean;
   addScrollToTop: boolean;
+  backgroundColor: string;
+  activeLinkBackgroundColor: string;
 }

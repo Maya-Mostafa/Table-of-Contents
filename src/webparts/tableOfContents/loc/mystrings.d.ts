@@ -29,6 +29,8 @@ declare interface ITableOfContentsWebPartStrings {
   verticalToRight: string;
   collapsibleState: string;
   addScrollToTop: string;
+  backgroundColor: string;
+  activeLinkBackgroundColor: string;
 }
 
 declare module 'TableOfContentsWebPartStrings' {

@@ -297,6 +297,7 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
           index={index}
           collapsibleState={this.props.collapsibleState}
           activeClass={this.state.activeLink === link.element.innerText+index ? styles.activeLink : ""}
+          activeLinkColor={this.props.activeLinkBackgroundColor}
           >
           {link.childNodes.length > 0 ? (<ul className={styles.childList} style={{ listStyleType: listStyle }}>{this.renderLinks(link.childNodes, listStyle)}</ul>) : ''}
         </LinkElement>
@@ -411,7 +412,7 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     // create a list of links from headers
     const links = this.getLinks(headers);
     // create components from a list of links
-    const toc = (<ul className={`${styles.mainList} ${collapsibleStyle}`} style={{ listStyleType: listStyle }}>{this.renderLinks(links, listStyle)}</ul>);
+    const toc = (<ul className={`${styles.mainList} ${collapsibleStyle}`} style={{ listStyleType: listStyle, backgroundColor: this.props.backgroundColor }}>{this.renderLinks(links, listStyle)}</ul>);
     // create previous page link
     const previousPageTitle = this.props.showPreviousPageLinkTitle && !this.props.hideTitle ? (this.renderBackToPreviousLink(listStyle)) : null;
     const previousPageAbove = this.props.showPreviousPageLinkAbove ? (this.renderBackToPreviousLink(listStyle)) : null;
@@ -427,10 +428,12 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     // set vertical column direction
     this.configureVerticalColumn();
 
-    // const webpartStyle = this.props.wpStyle ? this.props.wpStyle : 'wpStylePlain';
+    // const webpartStyle = this.props.wpStyle ? this.props.wpStyle : 'wpStylePlain';    
 
     return (
-      <section className={`${styles.tableOfContents} ${this.props.wpStyle === 'wpStyleBoxed' && styles.wpStyleBoxed} ${this.props.wpStyle === 'wpStyleTimeline' && styles.wpStyleTimeline} `}>
+      <section 
+        // style={{backgroundColor: this.props.backgroundColor}}
+        className={`${styles.tableOfContents} ${this.props.wpStyle === 'wpStyleBoxed' && styles.wpStyleBoxed} ${this.props.wpStyle === 'wpStyleLined' && styles.wpStyleLined} `}>
         <div className={hideInMobileViewClass}>
           <nav>
             {previousPageTitle}

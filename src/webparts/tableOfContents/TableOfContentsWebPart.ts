@@ -22,7 +22,7 @@ import {
 import * as strings from 'TableOfContentsWebPartStrings';
 import TableOfContents from './components/TableOfContents';
 import { ITableOfContentsProps } from './components/ITableOfContentsProps';
-//import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls';
+import { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } from '@pnp/spfx-property-controls';
 
 export interface ITableOfContentsWebPartProps {
   hideTitle: boolean;
@@ -48,6 +48,8 @@ export interface ITableOfContentsWebPartProps {
   collapsibleState: string;
   verticalToRight: boolean;
   addScrollToTop: boolean;
+  backgroundColor: string;
+  activeLinkBackgroundColor: string;
 }
 
 export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITableOfContentsWebPartProps> {
@@ -128,6 +130,8 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
         collapsibleState: this.properties.collapsibleState,
         verticalToRight: this.properties.verticalToRight,
         addScrollToTop: this.properties.addScrollToTop,
+        backgroundColor: this.properties.backgroundColor,
+        activeLinkBackgroundColor: this.properties.activeLinkBackgroundColor,
       }
     );
 
@@ -148,6 +152,8 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
+
+  
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     let showHeading4: any;
@@ -180,11 +186,20 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
     return {
       pages: [
         {
-          header: {
-            description: strings.propertyPaneDescription
+          // header: {
+          //   description: strings.propertyPaneDescription
 
-          },
+          // },
           groups: [
+            {
+              groupFields: [                
+                PropertyPaneLink('linkProperty', {
+                  href: 'https://pdsb1.sharepoint.com/sites/PDSBbrand/SitePages/TOC.aspx',
+                  text: 'Need help? Click here to see how to use this web part.',
+                  target: '_blank'
+                })
+              ]
+            },
             {
               groupFields: [
                 PropertyPaneToggle('hideTitle', {
@@ -275,7 +290,7 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   options: [
                     { key: 'wpStylePlain', text: 'Plain' },
                     { key: 'wpStyleBoxed', text: 'Boxed' },
-                    // { key: 'wpStyleTimeline', text: 'Timeline' },                    
+                    { key: 'wpStyleLined', text: 'Lined' },                    
                   ],
                   selectedKey: "plain"
                 }),
@@ -290,6 +305,32 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                 }),
                 PropertyPaneCheckbox('addScrollToTop', {
                   text: strings.addScrollToTop
+                }),
+                PropertyFieldColorPicker('backgroundColor', {
+                  label: strings.backgroundColor,
+                  selectedColor: this.properties.backgroundColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Full,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
+                }),
+                PropertyFieldColorPicker('activeLinkBackgroundColor', {
+                  label: strings.activeLinkBackgroundColor,
+                  selectedColor: this.properties.activeLinkBackgroundColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Full,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
                 }),
               ]
             },
@@ -306,15 +347,7 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                 })
               ]
             },
-            {
-              groupFields: [                
-                PropertyPaneLink('linkProperty', {
-                  href: 'https://pdsb1.sharepoint.com/sites/PDSBbrand/SitePages/TOC.aspx',
-                  text: 'Need help? Click here to see how to use this.',
-                  target: '_blank'
-                })
-              ]
-            }
+            
           ]
         }
       ]

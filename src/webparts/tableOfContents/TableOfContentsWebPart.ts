@@ -190,16 +190,7 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
           //   description: strings.propertyPaneDescription
 
           // },
-          groups: [
-            {
-              groupFields: [                
-                PropertyPaneLink('linkProperty', {
-                  href: 'https://pdsb1.sharepoint.com/sites/PDSBbrand/SitePages/TOC.aspx',
-                  text: 'Need help? Click here to see how to use this web part.',
-                  target: '_blank'
-                })
-              ]
-            },
+          groups: [            
             {
               groupFields: [
                 PropertyPaneToggle('hideTitle', {
@@ -347,7 +338,18 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                 })
               ]
             },
-            
+            {
+              groupFields: [       
+                PropertyPaneLabel('helpTitle', {
+                  text: 'Help'
+                }),         
+                PropertyPaneLink('linkProperty', {
+                  href: 'https://pdsb1.sharepoint.com/sites/PDSBbrand/SitePages/TOC.aspx',
+                  text: 'Need manuals for this web part?',
+                  target: '_blank'
+                })
+              ]
+            },
           ]
         }
       ]

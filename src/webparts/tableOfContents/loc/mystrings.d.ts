@@ -31,6 +31,12 @@ declare interface ITableOfContentsWebPartStrings {
   addScrollToTop: string;
   backgroundColor: string;
   activeLinkBackgroundColor: string;
+  textSize: string;
+  textColor: string;
+  borderColor: string;
+  borderSize: string;
+  borderRoundness: string;
+  shadow: string;
 }
 
 declare module 'TableOfContentsWebPartStrings' {

@@ -9,4 +9,5 @@ export interface LinkElementProps{
     collapsibleState: string;
     index: number;
     activeLinkColor: string;
+    headingSize: number;
 }

@@ -11,7 +11,8 @@ import {
   PropertyPaneTextField,
   PropertyPaneLabel,
   PropertyPaneDropdown,
-  PropertyPaneLink
+  PropertyPaneLink,
+  PropertyPaneSlider
 } from "@microsoft/sp-property-pane";
 import {
   ThemeProvider,
@@ -50,6 +51,15 @@ export interface ITableOfContentsWebPartProps {
   addScrollToTop: boolean;
   backgroundColor: string;
   activeLinkBackgroundColor: string;
+
+  titleColor: string;
+  titleSize: number;
+  headingColor: string;
+  headingSize: number;
+  borderColor: string;
+  borderRoundness: number;
+  borderSize: number;
+  enableShadow: boolean;
 }
 
 export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITableOfContentsWebPartProps> {
@@ -132,6 +142,15 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
         addScrollToTop: this.properties.addScrollToTop,
         backgroundColor: this.properties.backgroundColor,
         activeLinkBackgroundColor: this.properties.activeLinkBackgroundColor,
+
+        titleColor: this.properties.titleColor,
+        titleSize: this.properties.titleSize,
+        headingColor: this.properties.headingColor,
+        headingSize: this.properties.headingSize,
+        borderColor: this.properties.borderColor,
+        borderRoundness: this.properties.borderRoundness,
+        borderSize: this.properties.borderSize,
+        enableShadow: this.properties.enableShadow,
       }
     );
 
@@ -202,6 +221,27 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   onGetErrorMessage: this.checkToggleField,
                   value: strings.titleDefaultValue
                 }),
+                PropertyFieldColorPicker('titleColor', {
+                  label: strings.textColor,
+                  selectedColor: this.properties.titleColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Inline,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
+                }),
+                PropertyPaneSlider('titleSize', {
+                  label: strings.textSize,
+                  min: 10,
+                  max: 60,
+                  value: this.properties.titleSize,
+                  step : 2,
+                  showValue: true,
+                }),  
               ]
             },
             {
@@ -235,6 +275,27 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   text: strings.showHeading3FieldLabel
                 }),
                 showHeading4,
+                PropertyFieldColorPicker('headingColor', {
+                  label: strings.textColor,
+                  selectedColor: this.properties.headingColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Inline,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
+                }),
+                PropertyPaneSlider('headingSize', {
+                  label: strings.textSize,
+                  min: 10,
+                  max: 60,
+                  value: this.properties.headingSize,
+                  step : 2,
+                  showValue: true,
+                }),  
                 PropertyPaneDropdown('listStyle', {
                   label: strings.listStyle,
                   options: [
@@ -306,9 +367,10 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   debounce: 1000,
                   isHidden: false,
                   alphaSliderHidden: false,
-                  style: PropertyFieldColorPickerStyle.Full,
+                  style: PropertyFieldColorPickerStyle.Inline,
                   iconName: 'Precipitation',
-                  key: 'colorFieldId'
+                  key: 'colorFieldId',
+                  
                 }),
                 PropertyFieldColorPicker('activeLinkBackgroundColor', {
                   label: strings.activeLinkBackgroundColor,
@@ -319,9 +381,41 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                   debounce: 1000,
                   isHidden: false,
                   alphaSliderHidden: false,
-                  style: PropertyFieldColorPickerStyle.Full,
+                  style: PropertyFieldColorPickerStyle.Inline,
                   iconName: 'Precipitation',
                   key: 'colorFieldId'
+                }),
+                PropertyFieldColorPicker('borderColor', {
+                  label: strings.borderColor,
+                  selectedColor: this.properties.borderColor,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  disabled: false,
+                  debounce: 1000,
+                  isHidden: false,
+                  alphaSliderHidden: false,
+                  style: PropertyFieldColorPickerStyle.Inline,
+                  iconName: 'Precipitation',
+                  key: 'colorFieldId'
+                }),
+                PropertyPaneSlider('borderSize', {
+                  label: strings.borderSize,
+                  min: 0,
+                  max: 10,
+                  value: this.properties.borderSize,
+                  step : 1,
+                  showValue: true,
+                }),  
+                PropertyPaneSlider('borderRoundness', {
+                  label: strings.borderRoundness,
+                  min: 0,
+                  max: 50,
+                  value: this.properties.borderRoundness,
+                  step : 1,
+                  showValue: true,
+                }),  
+                PropertyPaneToggle('enableShadow', {
+                  label: strings.shadow
                 }),
               ]
             },

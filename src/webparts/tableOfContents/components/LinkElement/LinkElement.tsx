@@ -23,8 +23,8 @@ export default function LinkElement(props: LinkElementProps){
                 style={{backgroundColor: props.activeClass !== '' ? props.activeLinkColor : 'inherit'}}
                 onClick={clickHandler}
                 href={'#' + props.link.element.id}>
-                    {props.link.childNodes.length > 0 && !isCollapse && <span onClick={iconClickHanlder} className={styles.colExpIcon}><Icon iconName='ChevronDown' /></span>}
-                    {props.link.childNodes.length > 0 && isCollapse && <span onClick={iconClickHanlder} className={styles.colExpIcon}><Icon iconName='ChevronRight' /></span>}
+                    {props.link.childNodes.length > 0 && !isCollapse && <span onClick={iconClickHanlder} className={styles.colExpIcon}><Icon style={{fontSize: props.headingSize}} iconName='ChevronDown' /></span>}
+                    {props.link.childNodes.length > 0 && isCollapse && <span onClick={iconClickHanlder} className={styles.colExpIcon}><Icon style={{fontSize: props.headingSize}} iconName='ChevronRight' /></span>}
                     {props.link.childNodes.length == 0 && <span> </span>}
                     <span>{props.link.element.innerText}</span>
             </a>

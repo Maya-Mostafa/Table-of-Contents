@@ -31,6 +31,12 @@ define([], function() {
     "collapsibleState": "Collapsible State",
     "addScrollToTop": "Add Scroll to Top",
     "backgroundColor": "Background Color",
-    "activeLinkBackgroundColor": "Active Link Background Color"
+    "activeLinkBackgroundColor": "Active Link Background Color",
+    "textSize": "Text Size",
+    "textColor": "Text Color",
+    "borderColor": "Border Color",
+    "borderSize": "Border Size",
+    "borderRoundness": "Border Roundness",
+    "shadow": "Shadow"
   }
 });

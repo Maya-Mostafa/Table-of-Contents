@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './TableOfContents.module.scss';
 import { ITableOfContentsProps } from './ITableOfContentsProps';
 import { ITableOfContentsState } from './ITableOfContentsState';
-import { escape } from '@microsoft/sp-lodash-subset';
+import { escape, times } from '@microsoft/sp-lodash-subset';
 import * as strings from "TableOfContentsWebPartStrings";
 import { Icon } from '@fluentui/react';
 import LinkElement from './LinkElement/LinkElement';
@@ -298,6 +298,7 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
           collapsibleState={this.props.collapsibleState}
           activeClass={this.state.activeLink === link.element.innerText+index ? styles.activeLink : ""}
           activeLinkColor={this.props.activeLinkBackgroundColor}
+          headingSize = {this.props.headingSize}
           >
           {link.childNodes.length > 0 ? (<ul className={styles.childList} style={{ listStyleType: listStyle }}>{this.renderLinks(link.childNodes, listStyle)}</ul>) : ''}
         </LinkElement>
@@ -412,7 +413,23 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     // create a list of links from headers
     const links = this.getLinks(headers);
     // create components from a list of links
-    const toc = (<ul className={`${styles.mainList} ${collapsibleStyle}`} style={{ listStyleType: listStyle, backgroundColor: this.props.backgroundColor }}>{this.renderLinks(links, listStyle)}</ul>);
+    const toc = (
+      <ul className={`${styles.mainList} ${collapsibleStyle}`} 
+        style={{ 
+          listStyleType: listStyle, 
+          backgroundColor: this.props.backgroundColor,  
+          borderRadius: this.props.borderRoundness, 
+          borderColor: this.props.borderColor,
+          borderStyle: "solid",
+          borderWidth: this.props.borderSize,
+          color: this.props.headingColor,
+          fontSize: this.props.headingSize,
+          boxShadow: this.props.enableShadow ? "0px 1px 5px 2px #ccc" : "none",
+        }}
+        >
+          {this.renderLinks(links, listStyle)}
+      </ul>
+    );
     // create previous page link
     const previousPageTitle = this.props.showPreviousPageLinkTitle && !this.props.hideTitle ? (this.renderBackToPreviousLink(listStyle)) : null;
     const previousPageAbove = this.props.showPreviousPageLinkAbove ? (this.renderBackToPreviousLink(listStyle)) : null;
@@ -433,12 +450,20 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     return (
       <section 
         // style={{backgroundColor: this.props.backgroundColor}}
-        className={`${styles.tableOfContents} ${this.props.wpStyle === 'wpStyleBoxed' && styles.wpStyleBoxed} ${this.props.wpStyle === 'wpStyleLined' && styles.wpStyleLined} `}>
+        className={`${styles.tableOfContents} ${this.props.wpStyle === 'wpStyleBoxed' && styles.wpStyleBoxed} ${this.props.wpStyle === 'wpStyleLined' && styles.wpStyleLined} `}
+        // style={{
+        //   borderRadius: this.props.borderRoundness, 
+        //   borderColor: this.props.borderColor,
+        //   borderWidth: this.props.borderSize,
+        //   color: this.props.headingColor,
+        //   fontSize: this.props.headingSize
+        // }}        
+        >
         <div className={hideInMobileViewClass}>
           <nav>
             {previousPageTitle}
             <div className={titleClass}>
-              <h2 data-toc-ignore="true">{titleText}</h2>
+              <h2 style={{fontSize: this.props.titleSize, color: this.props.titleColor}} data-toc-ignore="true">{titleText}</h2>
             </div>
             {previousPageAbove}
             {toc}

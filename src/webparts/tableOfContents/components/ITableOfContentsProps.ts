@@ -35,4 +35,13 @@ export interface ITableOfContentsProps {
   addScrollToTop: boolean;
   backgroundColor: string;
   activeLinkBackgroundColor: string;
+
+  titleColor: string;
+  titleSize: number;
+  headingColor: string;
+  headingSize: number;
+  borderColor: string;
+  borderRoundness: number;
+  borderSize: number;
+  enableShadow: boolean;
 }

@@ -45,3 +45,6 @@ Here's how to deploy the web part to the site collection's app catalog:
 - Upload .sppkg file from sharepoint\solution to your tenant App Catalog
   - E.g.: https://`tenant`.sharepoint.com/sites/AppCatalog/AppCatalog
 - Add the web part to a site collection, and test it on a page
+
+
+## "nodeVersion": "16.20.0"

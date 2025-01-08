@@ -44,4 +44,8 @@ export interface ITableOfContentsProps {
   borderRoundness: number;
   borderSize: number;
   enableShadow: boolean;
+
+  enableInnerScrolling: boolean;
+  setHeight: boolean;
+  contentsHeight: number;
 }

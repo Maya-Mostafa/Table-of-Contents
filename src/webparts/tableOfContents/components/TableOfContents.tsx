@@ -377,15 +377,19 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
         // one-third column
         HTMLElementSticky.parentElement.style.position = "Sticky";
         HTMLElementSticky.parentElement.style.top = "0px";
+        // HTMLElementSticky.parentElement.style.bottom = "50px";
 
         // vertical section
         HTMLElementSticky.parentElement.parentElement.parentElement.style.position = "Sticky";
         HTMLElementSticky.parentElement.parentElement.parentElement.style.top = "0px";
+        // HTMLElementSticky.parentElement.parentElement.parentElement.style.bottom = "50px";
+
       }
       else {
 
         HTMLElementSticky.parentElement.parentElement.parentElement.style.position = "";
         HTMLElementSticky.parentElement.parentElement.parentElement.style.top = "";
+        // HTMLElementSticky.parentElement.parentElement.parentElement.style.bottom = "";
       }
     }
   }
@@ -413,8 +417,9 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
     // create a list of links from headers
     const links = this.getLinks(headers);
     // create components from a list of links
+    //${this.props.enableInnerScrolling && styles.scrolling}
     const toc = (
-      <ul className={`${styles.mainList} ${collapsibleStyle}`} 
+      <ul className={`${styles.mainList} ${collapsibleStyle} ${styles.scrolling}`} 
         style={{ 
           listStyleType: listStyle, 
           backgroundColor: this.props.backgroundColor,  
@@ -425,6 +430,7 @@ export default class TableOfContents extends React.Component<ITableOfContentsPro
           color: this.props.headingColor,
           fontSize: this.props.headingSize,
           boxShadow: this.props.enableShadow ? "0px 1px 5px 2px #ccc" : "none",
+          // maxHeight: this.props.enableInnerScrolling ? this.props.contentsHeight : "100%",
         }}
         >
           {this.renderLinks(links, listStyle)}

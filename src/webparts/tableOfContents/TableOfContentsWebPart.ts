@@ -60,6 +60,10 @@ export interface ITableOfContentsWebPartProps {
   borderRoundness: number;
   borderSize: number;
   enableShadow: boolean;
+
+  enableInnerScrolling: boolean;
+  setHeight: boolean;
+  contentsHeight: number;
 }
 
 export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITableOfContentsWebPartProps> {
@@ -151,6 +155,10 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
         borderRoundness: this.properties.borderRoundness,
         borderSize: this.properties.borderSize,
         enableShadow: this.properties.enableShadow,
+
+        enableInnerScrolling: this.properties.enableInnerScrolling,
+        setHeight: this.properties.setHeight,
+        contentsHeight: this.properties.contentsHeight,
       }
     );
 
@@ -419,6 +427,26 @@ export default class TableOfContentsWebPart extends BaseClientSideWebPart<ITable
                 }),
               ]
             },
+            // {
+            //   groupFields: [
+            //     PropertyPaneToggle('setHeight', {
+            //       label: strings.setHeightLabel
+            //     }),
+            //     PropertyPaneToggle('enableInnerScrolling', {
+            //       label: strings.enableInnerScrollingLabel,
+            //       disabled: !this.properties.setHeight
+            //     }),
+            //     PropertyPaneSlider('contentsHeight', {
+            //       label: strings.contentsHeightLabel,
+            //       min: 100,
+            //       max: 800,
+            //       value: this.properties.contentsHeight,
+            //       step : 1,
+            //       showValue: true,
+            //       disabled: !this.properties.setHeight
+            //     }), 
+            //   ]
+            // },
             {
               groupFields: [
                 PropertyPaneToggle('enableStickyMode', {

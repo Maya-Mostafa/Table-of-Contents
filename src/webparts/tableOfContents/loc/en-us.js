@@ -37,6 +37,9 @@ define([], function() {
     "borderColor": "Border Color",
     "borderSize": "Border Size",
     "borderRoundness": "Border Roundness",
-    "shadow": "Shadow"
+    "shadow": "Shadow",
+    "enableInnerScrollingLabel" : "Enable Inner Scrolling",
+    "setHeightLabel": "Set Fixed Height",
+    "contentsHeightLabel": "Height"
   }
 });

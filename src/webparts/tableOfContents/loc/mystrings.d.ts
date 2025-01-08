@@ -37,6 +37,9 @@ declare interface ITableOfContentsWebPartStrings {
   borderSize: string;
   borderRoundness: string;
   shadow: string;
+  enableInnerScrollingLabel: string;
+  setHeightLabel: string;
+  contentsHeightLabel: string;
 }
 
 declare module 'TableOfContentsWebPartStrings' {

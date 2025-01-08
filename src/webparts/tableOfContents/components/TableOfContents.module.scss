@@ -34,6 +34,21 @@
     font-weight: 600;    
   }
 
+  .mainList.scrolling{
+    overflow-y: scroll;
+    max-height: calc(100vh - 150px);
+    // max-height: 580px;
+  }
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .mainList.scrolling::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .mainList.scrolling {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
   &.wpStylePlain{
     display: block;
   }
